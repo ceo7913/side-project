@@ -1,0 +1,27 @@
+import React from 'react'
+import { sampleitems } from './Sample-date'
+
+
+
+
+const SamplePage = ({id}) => {
+    const {imgUrl,date,projectName,html} = sampleitems[id]
+  return (
+    <div className='card'>
+    <div className="height-100 display-table">
+        <div className="display-table-cell vertical-align-middle">
+            <div className="display-block position-relative">
+                <img src={imgUrl} alt=""/>
+                <p className="font-weight-600 bottom-text text-middle text-white text-uppercase text-center">{date}</p>
+            </div>
+            <div className="hover-title-box padding-55px-lr width-300px sm-width-100 sm-padding-20px-lr">
+                <div className="separator width-50px bg-black md-display-none xs-margin-lr-auto"></div>
+                <h3><a className="text-white font-weight-600 alt-font text-white-hover" href={html}>{projectName}</a></h3>
+            </div>
+        </div>
+    </div>
+    </div>
+  )
+}
+
+export default SamplePage

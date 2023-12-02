@@ -1,0 +1,117 @@
+@font-face {
+    font-family: 'HBIOS-SYS';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'KOFIHDrLEEJWTTF-B';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/KOFIHDrLEEJWTTF-B.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+.Tparent {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr) 0.5fr repeat(9, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.Tdiv1 {
+    width: 80%;
+    height: 80%;
+    grid-area: 8 / 3 / 13 / 9;
+    background-color: red;
+
+}
+.myName{
+    margin-top: 25px;
+    font-size: 35px;
+    color: #08C304;
+    font-family: 'HBIOS-SYS';
+    /* text-shadow:3px 2px 2px rgb(199, 106, 124); */
+}
+.Tdiv2 {
+    font-family: 'KOFIHDrLEEJWTTF-B';
+    padding: 20px;
+    display: flex;
+    position: relative;
+    grid-area: 4 / 8 / 15 / 15;
+    /* border: 4px solid #08C304; */
+    color: white;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    justify-content: center;
+}
+
+.secondText{
+   margin-left: 30px;
+   margin-right: 10px;
+}
+.tecStack{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-weight: bold;
+    font-size: 25px;
+}
+.tecStackIn span{
+    font-size: 17px;
+    font-weight: bold;
+    border: 1px solid #08C304;
+    border-radius:5px;
+    color: black;
+    background-color: #08C304;
+    padding: 2px;
+    padding-inline: 4px;
+}
+.tecStackIn{
+    margin-top: -10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 6px;
+}
+.eduHistory{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-weight: bold;
+    font-size: 25px;
+}
+.eduHistoryIn{
+    margin-top: -10px;
+    display: flex;
+    align-items: flex-start;
+    font-size: 17px;
+    flex-direction: column;
+    gap: 10px;
+}
+._fontIcon{
+    margin-right: 10px;
+}
+.bottomLine{
+    border-top: #08C304 solid 2px ;
+    position: relative;
+    width: 85vw;
+    bottom: 50px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.bottomLink{
+    margin-top: 5px;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+
+}
+.bottomLink div a{
+    text-decoration: none;
+    color: #08C304;
+    font-size: 15px;
+    font-weight: bold;
+}

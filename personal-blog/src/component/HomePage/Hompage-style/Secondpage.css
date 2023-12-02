@@ -1,0 +1,144 @@
+@font-face {
+    font-family: 'HBIOS-SYS';
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2") format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Makgeolli';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/Makgeolli.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'RixInooAriDuriR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GongGothicMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'KyoboHand';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/KyoboHand.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.Sparent {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: 2fr repeat(5, 1fr) 0.5fr repeat(9, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+}
+
+.Sdiv1 {
+    position: relative;
+    grid-area: 4 / 2 / 15 / 7;
+    cursor: pointer;
+    border: 4px solid rgb(0, 42, 121);
+    
+}
+.Sdiv1:hover > .pngImg {
+    opacity: 0;
+}
+.projectText {
+    font-family: 'GongGothicMedium';
+    top: 10px;
+    left: 10px;
+    z-index: 999;
+    position: absolute;
+    font-size: 40px;
+    color: white;
+}
+.pngImg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.Sdiv2 {
+    position: relative;
+    grid-area: 4 / 8 / 9 / 15;
+    background-color: rgb(0, 148, 0);
+    border: 4px solid rgb(8, 82, 0);
+    cursor: pointer;
+}
+.studyText {
+    font-family: 'KyoboHand';
+    position: absolute;
+    z-index: 999;
+    overflow: hidden;
+    word-wrap: break-word;
+    /* hyphens: auto; */
+    font-size: 50px;
+    color: rgb(8, 82, 0);
+    font-weight: bold;
+    bottom: 49%;
+    right: 16%;
+    text-shadow:1px 1px 1px rgb(12, 9, 9);
+    transform:rotate(15deg)
+}
+.Sdiv2Img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.Sdiv2:hover > .Sdiv2Img {
+    opacity: 0;
+}
+
+.pngImg3 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.Sdiv3 {
+    position: relative;
+    grid-area: 10 / 8 / 15 / 15;
+    border: 4px solid rgb(255, 72, 0);
+    cursor: pointer;
+}
+.Sdiv3:hover > .pngImg3 {
+    opacity: 0;
+}
+
+
+
+.sw3 {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%,-50%);
+    width: 250px;
+    height: 250px;
+}
+
+.issueText{
+    font-family: 'RixInooAriDuriR';
+    position: absolute;
+    font-size: 40px;
+    color:white;
+    z-index: 999;
+    right: 27%;
+    top: 35%;
+    text-shadow: -3px 2px 2px  rgb(255, 72, 0);
+
+}
+.swIn{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: rgba(255, 4, 4,0.9);
+    font-family: 'Makgeolli';
+    font-size: 40px;
+    font-weight: bold;
+    text-shadow: 3px 2px 2px rgb(12, 9, 9);
+}

@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'HBIOS-SYS';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+.firstPage{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: black
+}
+.firstImg{
+width: 100vw;
+height: 75vh;
+
+}
+.textScramble{
+    position: absolute;
+    color: rgba(200,200,200,1);
+    filter: drop-shadow(0 0 0.3em rgb(51, 92, 228));
+    font-family: 'HBIOS-SYS';
+    left: 50%;
+    top: 85%;
+    transform: translate(-50%,-90%);
+    font-size: 30px;
+}
+

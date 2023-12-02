@@ -1,0 +1,66 @@
+import { AnimatePresence } from 'framer-motion';
+import React from 'react'
+import { useParams } from 'react-router-dom';
+import Item from './Item';
+import List from './List';
+import "./style/Test.css"
+
+
+
+// let d = 1;
+// let c;
+
+// c = d + add(); // 1
+
+// let v = d+c;
+
+// function add() {
+//   let b = 1;
+//   return b; 리턴은 최종적으로 호출 됐을때 보내주기위한 스프링 역할을 한다고 보면된다.
+// }
+
+/*
+  이 함수는 예제입니다
+  ProjecPage를 호출하기위한 속성들을 정의하는 공간입니다(컴포넌트입니다)
+  Router는 길 실제 내가 전해줄 게이트웨이의 변수는(담을그릇) 여기서 처리합니다
+  실제 id에 담을 값은 여기서 설정합니다
+  id라는 길 즉 id;라는 변수라고 생각하면 편합니다
+  내가 무엇을 설정하거나 그런거는 자유입니다
+  근데 Link를 쓸때 백틱은 한번 더 공부하길 권유
+  근데 이게 맞을거임
+
+  한가지더
+
+  map쓸때
+  (({id})=>{ <= 여기 부분 이렇게 쓸려고 하면 return은 고정값임
+    <Link to={`issue/${id}`}></Link>  
+  })
+
+  
+  */
+// const a = () =>{
+
+//   return (
+//     {
+//      anything.map(({id})=>{
+//      return  <Link to={`issue/${id}`}></Link>  
+//     })
+//     }
+//     // issue/5
+//   )
+// }
+
+
+const ProjecPage = () => {
+    const {id} = useParams();
+    return(
+      <div className='kkka'>
+        <List selectedId={id}/>
+        <AnimatePresence>
+          {id && <Item id={id} key="item"/>}  
+        </AnimatePresence>
+      </div>
+    )
+}
+
+export default ProjecPage

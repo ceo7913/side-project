@@ -1,0 +1,154 @@
+@font-face {
+  font-family: "HBIOS-SYS";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+.on {
+  display: block;
+}
+.off {
+  display: none;
+}
+
+.LoginBox {
+  /* opacity: 0; */
+  position: absolute;
+  width: 500px;
+  height: 580px;
+  background-color: #000000bb;
+  border: 4px solid #08c304;
+  z-index: 999;
+  /* top: 50%;
+    left: 50%; */
+  /* transform: translate(-50%,-50%); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  overflow: hidden;
+  backdrop-filter: blur(2px);
+}
+.LogName {
+  margin-top: 30px;
+  font-size: 40px;
+  color: #08c304;
+  font-family: "HBIOS-SYS";
+}
+.switchBox {
+  margin-top: 15px;
+  font-family: "HBIOS-SYS";
+}
+.logInput {
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  row-gap: 15px;
+  align-items: center;
+}
+.logInput input {
+  outline: none;
+  height: 35px;
+  width: 300px;
+  padding-left: 10px;
+  border-radius: 5px;
+  border: 0;
+}
+
+.pwBox {
+  position: relative;
+  height: 30px;
+}
+.pwShow {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  color: rgb(119, 119, 119);
+  top: 30%;
+  right: 3%;
+}
+.loginBtn {
+  cursor: pointer;
+  margin-top: 50px;
+  border-radius: 5px;
+  height: 40px;
+  width: 9vw;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  background: linear-gradient(
+    -135deg,
+    rgb(97, 87, 255) 0%,
+    rgb(153, 51, 255) 100%
+  );
+}
+.findPW {
+  color: #08c304;
+  font-size: 16px;
+  font-family: "HBIOS-SYS";
+  cursor: pointer;
+}
+.signBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 15px;
+  margin-top: 70px;
+}
+.signBox input {
+  height: 35px;
+  width: 300px;
+  border-radius: 5px;
+  padding-left: 10px;
+  outline: none;
+  border: 0;
+}
+.signBtn {
+  margin-top: 10px;
+  border-radius: 5px;
+  height: 40px;
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  background: linear-gradient(
+    -135deg,
+    rgb(97, 87, 255) 0%,
+    rgb(153, 51, 255) 100%
+  );
+}
+.showPw1Div {
+  position: relative;
+}
+.showPw2Div {
+  position: relative;
+}
+.showPw1 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  color: rgb(119, 119, 119);
+  top: 24%;
+  right: 3%;
+}
+.showPw2 {
+  position: absolute;
+  top: 24%;
+  right: 3%;
+  width: 20px;
+  height: 20px;
+  color: rgb(119, 119, 119);
+}
+.outBox {
+  cursor: pointer;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  border: #08c304 solid 2px;
+  color: #08c304;
+  font-family: "HBIOS-SYS";
+  justify-content: center;
+  right: 10px;
+}

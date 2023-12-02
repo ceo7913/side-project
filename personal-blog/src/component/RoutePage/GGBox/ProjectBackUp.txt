@@ -1,0 +1,127 @@
+import React, { useEffect, useState } from "react";
+import { EffectCoverflow, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { motion } from "framer-motion";
+import "./style/ProjectPage.css";
+// import "swiper/css"; import "swiper/css/effect-coverflow"; import
+// "swiper/css/pagination";
+const ProjectPage = () => {
+  // const [active,isActive] = useState();
+  // const swiperHover = () =>{
+  //     console.log("hover");
+  //     return <motion.div
+  //         whileHover={{ scale: [null, 1.5, 1.4] }}
+  //         transition={{ duration: 0.3 }}
+  //     ></motion.div>
+  // }
+  return (
+    <div>
+      <div className="ProjectPageBody">
+        {/* <ul className="myCustomPagination" scalex={0.015}>
+          <li class="swiper-pagination-switch first active">
+            <span class="switch-title">1911</span>
+          </li>
+          <li class="swiper-pagination-switch">
+            <span class="switch-title">1970</span>
+          </li>
+          <li class="swiper-pagination-switch">
+            <span class="switch-title">2021</span>
+          </li>
+          <li class="swiper-pagination-switch last">
+            <span class="switch-title">3000</span>
+          </li>
+        </ul> */}
+        <div className="swiperWraps">
+          <Swiper
+            effect={"coverflow"}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={"auto"}
+            coverflowEffect={{
+              rotate: 50,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              // scale:1,
+              slideShadows: true,
+            }}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            }}
+            onSlideChange={() => console.log("slide change")}
+            // .swiper-pagination-bullet-active
+            // direction= {"horizontal"}
+            pagination={{
+              clickable: true,
+              el: ".myCustomPagination",
+              type: "progressbar",
+              // progressbarFillClass:{     el:".customFill" }
+            }}
+            modules={[EffectCoverflow, Pagination]}
+            className="mySwiper"
+          >
+            <SwiperSlide className="firstSw">
+              {({ isActive }) => (
+                <div>
+                  {isActive ? (
+                    <div className="firstP">
+                      (비NCS) JS 웹 프론트엔드 프로젝트
+                    </div>
+                  ) : null}
+                  {/* <motion.div
+                    className="motionP"
+                    whileHover={{ scale: [null, 1.2, 1.1] }}
+                    transition={{ duration: 0.3 }}
+                  >dsadasdas</motion.div> */}
+                </div>
+              )}
+            </SwiperSlide>
+            <SwiperSlide>
+              {({ isActive }) => (
+                <div>
+                  {isActive ? (
+                    <div className="firstP">
+                      (비NCS) Node.js 웹 백엔드 프로젝트
+                    </div>
+                  ) : null}
+                </div>
+              )}
+            </SwiperSlide>
+            <SwiperSlide>
+              {({ isActive }) => (
+                <div>
+                  {isActive ? (
+                    <div className="firstP">
+                      (비NCS) React 웹 서비스 개발 프로젝트
+                    </div>
+                  ) : null}
+                </div>
+              )}
+            </SwiperSlide>
+            <SwiperSlide>
+              {({ isActive }) => (
+                <div>
+                  {isActive ? (
+                    <div className="firstP">Fourth Project</div>
+                  ) : null}
+                </div>
+              )}
+            </SwiperSlide>
+            <SwiperSlide>
+              {({ isActive }) => (
+                <div>
+                  {isActive ? (
+                    <div className="firstP">Fifth Project</div>
+                  ) : null}
+                </div>
+              )}
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProjectPage;

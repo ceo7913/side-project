@@ -1,0 +1,137 @@
+
+  
+  .kkka * {
+    box-sizing: border-box;
+    font-family: ".SFNSText", "SFProText-Regular", "SFUIText-Regular", ".SFUIText",
+      Helvetica, Arial, sans-serif;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+  .kkka .card {
+    position: relative;
+    height: 41vh;
+    max-width: 100%;
+  }
+  
+  .kkka .card:nth-child(4n + 1),
+  .kkka .card:nth-child(4n + 4) {
+    max-width: 100%;
+  }
+
+  
+  .kkka .card-content-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: block;
+    pointer-events: none;
+  }
+  
+  .kkka .card-content-container.open {
+    top: 80px;
+    left: 0;
+    right: 0;
+    position: fixed;
+    z-index: 1;
+    overflow: hidden;
+    padding: 40px 0;
+  }
+  
+  .kkka .card-content {
+    pointer-events: auto;
+    position: relative;
+    border-radius: 20px;
+    background: #3e3eff;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+  }
+  
+  .kkka .open .card-content {
+    height: 41.667vw;
+    max-width: 78.125vw;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  
+  .kkka .card-open-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .kkka .card-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    height: 420px;
+    width: 100vw;
+  }
+  
+  .kkka .open .card-image-container,
+  .kkka .open .title-container {
+    z-index: 1;
+  }
+  
+  .kkka .title-container {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    max-width: 300px;
+  }
+  
+  .kkka .open .title-container {
+    top: 30px;
+    left: 30px;
+  }
+  
+  .kkka h2 {
+    color: #fff;
+    margin: 8px 0;
+  }
+  
+  .kkka .category {
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+  
+  .kkka .overlay {
+    z-index: 1;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.8);
+    will-change: opacity;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .kkka .overlay a {
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  /* 안에 넣을 컨텐츠 나올 부분 */
+  .kkka .content-container {
+    padding-top: 200px;
+    padding-left: 20px;
+    color: white;
+    width: 100px;
+    height: 100px;
+    font-size: 50px;
+  }
+  
+
+  

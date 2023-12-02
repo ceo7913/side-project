@@ -1,0 +1,19 @@
+.Projectpage {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+.DetailParent {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(30, 1fr);
+  grid-column-gap: 0;
+  grid-row-gap: 0;
+}
+
+.DerailDiv1 {
+    grid-area: 2 / 2 / 8 / 16;
+}
+.DerailDiv2 {
+    grid-area: 9 / 2 / 30 / 16;
+}
