@@ -4,6 +4,7 @@ import GlobalStyle from './styled/GlobalStyled';
 import {RouterProvider, createBrowserRouter} from 'react-router-dom'
 import { Main } from './pages/Main';
 import { NotFound } from './pages/NotFound';
+import { MainVideos } from './component/MainVideos';
 
 const router = createBrowserRouter([
   {
@@ -25,5 +26,6 @@ root.render(
   <>
     <GlobalStyle/>
     <RouterProvider router={router}/>
+    <MainVideos/>
   </>
 );
