@@ -6,6 +6,7 @@ import { Main } from './pages/Main';
 import { NotFound } from './pages/NotFound';
 import { MainVideos } from './component/MainVideos';
 import { MovieList } from './component/MovieList';
+// import {MainVideos,MovieList} from './component';
 import { Provider } from 'react-redux';
 import {thunk} from 'redux-thunk'; // $ yarn add redux-thunk
 import { applyMiddleware, compose, createStore } from 'redux';
