@@ -1,16 +1,17 @@
 // index.jsx 는 폴더 내부에 기본 경로로 추적된다.
 import {combineReducers} from 'redux'
+import {FETCH_ACTION_MOVIES} from './reducer'
 
 const actionMovieReducer = (state = [], action)=>{
     // action = 상태를 변경하려는 객체
     // state = 상태값
     switch(action.type){
-        case 'FETCH_ACTION_MOVIES':
+        case FETCH_ACTION_MOVIES:
         return{
             ...state,
             movies : action.data
         }
-        default: return
+        default: return state
     }
 }
 
