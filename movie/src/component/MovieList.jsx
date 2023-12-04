@@ -1,7 +1,10 @@
 import React from 'react'
+import { Action } from './Action'
 
 export const MovieList = () => {
   return (
-    <div>MovieList</div>
+    <div>
+        <Action/>
+    </div>
   )
 }
