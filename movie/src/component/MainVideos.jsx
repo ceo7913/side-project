@@ -6,6 +6,7 @@ import { styled } from 'styled-components';
 export const MainVideos = () => {
     const [movie, setMovie] = useState(null) // 영화의 리스트가 있음을 반환 
     const [videoKey, setVideoKey] = useState(null) // 영화 동영상을 연결할 아이디를 반환
+    const [showImg,setShowImg] = useState(true) // 맨처음 썸네일 이미지를 보여줄 이미지 상태값
 
     useEffect(()=>{ // 페이지를 읽을때 데이터도 같이 읽는다.
         fetchData();
@@ -36,6 +37,11 @@ export const MainVideos = () => {
                 setVideoKey(movieDetail.videos.results[0].key);
                 // console.log(movieDetail.videos.results[0].key); // => sGrdYmju2Fs 
                 // key 값이 없으면 안나올 수 있다. 예고편 key 값이 없음 => 따라서 조건문을 걸어서 항상 나올 수 있도록 해준다.
+
+                setTimeout(()=>{
+                    // 이미지 출력 2초뒤에 영상 노출
+                    setShowImg(false)
+                },2000)
             }
 
         }catch(error){
@@ -56,13 +62,24 @@ export const MainVideos = () => {
     }
   return (
     <>
-            <MainVideoWrapper id='videoContainer'>
-                
-            </MainVideoWrapper>
+        {showImg && movie &&(
+            <MainVideoImg img={movie.backdrop_path}/>
+        )}
+        <MainVideoWrapper id='videoContainer'/>
+
     </>
   )
 }
 
+const MainVideoImg = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 99;
+    background: url(https://image.tmdb.org/t/p/original/${props=>props.img}) no-repeat center center / cover;
+`
 const MainVideoWrapper = styled.div`
     width: 100%;
     height: 100vh;
