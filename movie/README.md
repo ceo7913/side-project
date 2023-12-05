@@ -5,8 +5,18 @@
 - styled-components
 - react-router-dom
 - react-icons
+- axios
+- redux
+- react-redux
+- redux-thunk
+- swiper
 ```
 $ yarn add styled-components
 $ yarn add react-router-dom
 $ yarn add react-icons
+$ yarn add axios
+$ yarn add redux
+$ yarn add react-reudx
+$ yarn add redux-thunk
+$ yarn add swiper
 ```
