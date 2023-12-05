@@ -1,6 +1,6 @@
 // index.jsx 는 폴더 내부에 기본 경로로 추적된다.
 import {combineReducers} from 'redux'
-import {FETCH_ACTION_MOVIES} from './reducer'
+import {FETCH_ACTION_MOVIES, FETCH_COMEDY_MOVIES} from './reducer'
 
 const actionMovieReducer = (state = [], action)=>{
     // action = 상태를 변경하려는 객체
@@ -15,9 +15,23 @@ const actionMovieReducer = (state = [], action)=>{
     }
 }
 
+const comedyMovieReducer = (state = [], action)=>{
+    // action = 상태를 변경하려는 객체
+    // state = 상태값
+    switch(action.type){
+        case FETCH_COMEDY_MOVIES:
+        return{
+            ...state,
+            movies : action.data
+        }
+        default: return state
+    }
+}
+
 const rootReducer = combineReducers({
     // 여기서의 action 과 actionMovieReducer 안에 있는 action 은 다름
     action : actionMovieReducer,
+    comedy : comedyMovieReducer,
 })
 /*
 combineReducers = 여러개의 reducer 를 하나의 store 에서 실행할 수 있도록 해주는 메서드
