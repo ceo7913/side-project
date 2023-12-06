@@ -15,6 +15,7 @@ import { MovieCard } from './MovieCard';
 
 export const Action = () => {
   const [isClick, setIsClick] = useState(false); // MovieItem this 값 접근
+  const [genres, setGenres] = useState({});
   const dispatch = useDispatch(); // useDispatch = 생성된 action의 state 의 접근
   
   useEffect(()=>{ // useEffect 를 사용하는 이유는 마운트 됐을때 한번만 실행되면 되기 때문
@@ -24,7 +25,7 @@ export const Action = () => {
 
   // store 상태값을 변환
   const actionData = useSelector((state)=>state.action.movies, []) || []
-  console.log(actionData.results); // => action 영화에 대한 정보가 담김 / 20개가 기본값(한페이지)
+  // console.log(actionData.results); // => action 영화에 대한 정보가 담김 / 20개가 기본값(한페이지)
 
   const overViewEvent = (el) =>{
     setIsClick(el);
@@ -37,11 +38,23 @@ export const Action = () => {
   useEffect(()=>{
     const fetchGenres = async()=>{
       try{
-        const res = await fetch('https://api.themoviedb.org/3/genr')
+        const res = await fetch('https://api.themoviedb.org/3/genr/movie/list?api_key=8454804e2a979f263913c7e893c28db8&language=ko-KR')
         // https://api.themoviedb.org/3/genre/movie/list?language=en
+        const data = await res.json();
+        const genresMap = data.genres.reduce((acc,genre)=>{
+          acc[genre.id] = genre.name;
+          // console.log(acc);
+          return acc
+        },{});
+        setGenres(genresMap)
+        // error 캐치시 console
+      }catch(error){
+        console.error(error);
       }
     }
-  })
+    // useEffect 는 랜더링 될때 마다 실행되는 hook 이기 때문에 선언 후 실행까지 해줘야 완성이다.
+    fetchGenres();
+  },[])
 
   return (
     <div>
@@ -58,8 +71,8 @@ export const Action = () => {
           >
             <MovieWrapper>
               {actionData.results && actionData.results.map((el,index)=>(
-                <SwiperSlide>
-                    <MovieCard movie={el}></MovieCard>
+                <SwiperSlide key={index}>
+                    <MovieCard movie={el}/>
                 </SwiperSlide>
               ))}
             </MovieWrapper>
