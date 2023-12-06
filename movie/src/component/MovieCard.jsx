@@ -5,7 +5,16 @@ import { LuPlus } from 'react-icons/lu';
 import { SlLike } from 'react-icons/sl'
 
 export const MovieCard = ({movie}) => {
-  const {title, backdrop_path, genresId} = movie;
+  const {title, backdrop_path, genre_ids} = movie;
+  /*
+    console.log(genre_ids); // => {
+      (3) [28, 12, 53]
+      (3) [28, 80, 53]
+      (3) [878, 28, 53]
+      (3) [28, 12, 878]
+      (3) [28, 18, 10749]
+    }
+  */
   return (
     <MovieItem> 
       {/* 선택된 객체에 따라 다른 데이터를 불러와야 함 */}
@@ -19,9 +28,9 @@ export const MovieCard = ({movie}) => {
             <button className='btn4' name='download-button'><IoIosArrowDown/></button>
           </div>
           <div className='genres-wrapper'>
-            {genresId.map((el)=>(
+            {genre_ids.map((genreId)=>(
               // 받아온 장르의 id를 가지고 있는 요소
-              <span key={el}>{genresId[el]}</span>
+              <span key={genreId}>{genre_ids[genreId]}</span>
             ))}
           </div>
         </Content>
