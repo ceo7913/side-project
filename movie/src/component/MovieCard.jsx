@@ -4,10 +4,9 @@ import { IoIosPlay, IoIosArrowDown } from "react-icons/io";
 import { LuPlus } from 'react-icons/lu';
 import { SlLike } from 'react-icons/sl'
 
-export const MovieCard = ({movie, genreText}) => {
-
+export const MovieCard = ({movie, genreText, onClick}) => {
   return (
-    <MovieItem> 
+    <MovieItem onClick={()=>onClick(movie)}> 
       {/* 선택된 객체에 따라 다른 데이터를 불러와야 함 */}
       <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} alt='영화 리스트 이미지'/>
         <Content className='addi-content'>
@@ -40,6 +39,8 @@ const MovieItem = styled.div`
     top: 0;
     left: 0;
     transform: scale(1.3);
+    z-index: 10;
+    border: solid 1px rgba(255,255,255,0.1);
     .addi-content{
       opacity: 1;
       position: relative;
@@ -52,7 +53,7 @@ const Content = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background: gray;
+  background: rgba(0,0,0,0.3);
   color: white;
   transition: 500ms;
   padding: 12px;
