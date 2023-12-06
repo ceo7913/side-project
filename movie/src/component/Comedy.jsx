@@ -22,7 +22,7 @@ export const Comedy = () => {
   // console.log(fetchActionMovies());
 
   // store 상태값을 변환
-  const actionData = useSelector((state)=>state.action.movies, []) || []
+  const actionData = useSelector((state)=>state.comedy.movies, []) || []
   console.log(actionData.results); // => action 영화에 대한 정보가 담김 / 20개가 기본값(한페이지)
 
   const overViewEvent = (el) =>{
