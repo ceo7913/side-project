@@ -11,6 +11,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import '../styled/swiperCustomCss.css'
 import { OverView } from './OverView';
+import { MovieCard } from './MovieCard';
 
 export const Action = () => {
   const [isClick, setIsClick] = useState(false); // MovieItem this 값 접근
@@ -32,6 +33,16 @@ export const Action = () => {
     setIsClick(false);
   }
 
+  // 장르 추가
+  useEffect(()=>{
+    const fetchGenres = async()=>{
+      try{
+        const res = await fetch('https://api.themoviedb.org/3/genr')
+        // https://api.themoviedb.org/3/genre/movie/list?language=en
+      }
+    }
+  })
+
   return (
     <div>
       <MovieContainer>
@@ -48,10 +59,7 @@ export const Action = () => {
             <MovieWrapper>
               {actionData.results && actionData.results.map((el,index)=>(
                 <SwiperSlide>
-                  {/* 선택된 객체에 따라 다른 데이터를 불러와야 함 */}
-                  <MovieItem onClick={()=>overViewEvent(el,index)}> 
-                    <img src={`https://image.tmdb.org/t/p/original/${el.backdrop_path}`} alt='영화 리스트 이미지'/>
-                  </MovieItem>        
+                    <MovieCard movie={el}></MovieCard>
                 </SwiperSlide>
               ))}
             </MovieWrapper>
@@ -76,9 +84,4 @@ const MovieTitle = styled.div`
 const MovieWrapper = styled.div`  
  height: 200px;
 `
-const MovieItem = styled.div`
-  img{
-    display: block;
-    max-width: 100%;
-  }
-`
+
