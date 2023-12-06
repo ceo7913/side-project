@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import { fetchActionMovies } from '../store/reducer';
 import styled from 'styled-components';
+import { OverView } from './OverView';
+import { MovieCard } from './MovieCard';
 
 // swiper
 import { Swiper, SwiperSlide } from 'swiper/react'; // $ yarn add swiper
@@ -10,10 +12,10 @@ import 'swiper/css' // 스와이퍼에 기본 css 적용 import
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import '../styled/swiperCustomCss.css'
-import { OverView } from './OverView';
-import { MovieCard } from './MovieCard';
+
 
 export const Action = () => {
+  const [itemSelect, setItemSelect] = useState({});
   const [isClick, setIsClick] = useState(false); // MovieItem this 값 접근
   const [genres, setGenres] = useState({});
   const dispatch = useDispatch(); // useDispatch = 생성된 action의 state 의 접근
@@ -38,15 +40,15 @@ export const Action = () => {
   useEffect(()=>{
     const fetchGenres = async()=>{
       try{
-        const res = await fetch('https://api.themoviedb.org/3/genr/movie/list?api_key=8454804e2a979f263913c7e893c28db8&language=ko-KR')
+        const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=8454804e2a979f263913c7e893c28db8&language=ko-KR')
         // https://api.themoviedb.org/3/genre/movie/list?language=en
         const data = await res.json();
-        const genresMap = data.genres.reduce((acc,genre)=>{
+        const genreMap = data.genres.reduce((acc,genre)=>{
           acc[genre.id] = genre.name;
-          // console.log(acc);
+          // issue ! : genre.id 못받아옴, reduce 관련 error 출력
           return acc
         },{});
-        setGenres(genresMap)
+        setGenres(genreMap)
         // error 캐치시 console
       }catch(error){
         console.error(error);
@@ -59,6 +61,11 @@ export const Action = () => {
   // id 를 받아와서 map 으로 요소들을 만든 다음 하나로 합침
   const getGenreText = (genreId) =>{
     return genreId.map((el)=>genres[el]).join()
+  }
+
+  const movieClickEvent = (movie) =>{
+    setItemSelect(movie)
+    setIsClick(true)
   }
   return (
     <div>
@@ -76,13 +83,21 @@ export const Action = () => {
             <MovieWrapper>
               {actionData.results && actionData.results.map((el,index)=>(
                 <SwiperSlide key={index}>
-                    <MovieCard movie={el} genreText={getGenreText(el.genre_ids)}/>
+                    <MovieCard 
+                      movie={el} 
+                      genreText={getGenreText(el.genre_ids)}
+                      onClick={movieClickEvent}
+                    />
                 </SwiperSlide>
               ))}
             </MovieWrapper>
           </Swiper>
       </MovieContainer>
-      {isClick && <OverView movie={isClick} setIsClick={overViewClose}/>}
+      {isClick && (
+        <OverViewWrapper isVisible={!!itemSelect}>
+          <OverView {...itemSelect} setIsClick={()=>setIsClick(false)}/>
+        </OverViewWrapper>
+      )}
     </div>
   )
 }
@@ -99,6 +114,20 @@ const MovieTitle = styled.div`
   color: #ffffff;
 `
 const MovieWrapper = styled.div`  
- height: 200px;
+  height: 200px;
+`
+const OverViewWrapper = styled.div`
+  /* isVisible 상태값에 따른 삼항연산자 */
+  display: ${props => [props.isVisible ? 'block' : 'none']};
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
 `
 
