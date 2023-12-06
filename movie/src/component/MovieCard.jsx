@@ -4,34 +4,23 @@ import { IoIosPlay, IoIosArrowDown } from "react-icons/io";
 import { LuPlus } from 'react-icons/lu';
 import { SlLike } from 'react-icons/sl'
 
-export const MovieCard = ({movie}) => {
-  const {title, backdrop_path, genre_ids} = movie;
-  /*
-    console.log(genre_ids); // => {
-      (3) [28, 12, 53]
-      (3) [28, 80, 53]
-      (3) [878, 28, 53]
-      (3) [28, 12, 878]
-      (3) [28, 18, 10749]
-    }
-  */
+export const MovieCard = ({movie, genreText}) => {
+
   return (
     <MovieItem> 
       {/* 선택된 객체에 따라 다른 데이터를 불러와야 함 */}
-      <img src={`https://image.tmdb.org/t/p/original/${backdrop_path}`} alt='영화 리스트 이미지'/>
+      <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} alt='영화 리스트 이미지'/>
         <Content className='addi-content'>
-          <p>{title}</p>
+          <p>{movie.title}</p>
           <div className='btn-wrapper'>
-            <button className='btn1' name='play-button'><IoIosPlay/></button>
-            <button className='btn2' name='plus-button'><LuPlus/></button>
-            <button className='btn3' name='like-button'><SlLike/></button>
-            <button className='btn4' name='download-button'><IoIosArrowDown/></button>
+            <button className='btn1' name='플레이'><IoIosPlay/></button>
+            <button className='btn2' name='추가'><LuPlus/></button>
+            <button className='btn3' name='좋아요'><SlLike/></button>
+            <button className='btn4' name='다운로드'><IoIosArrowDown/></button>
           </div>
           <div className='genres-wrapper'>
-            {genre_ids.map((genreId)=>(
-              // 받아온 장르의 id를 가지고 있는 요소
-              <span key={genreId}>{genre_ids[genreId]}</span>
-            ))}
+              {/* 받아온 장르의 id를 가지고 있는 요소 */}
+              <span>{genreText}</span>
           </div>
         </Content>
     </MovieItem>        
@@ -91,9 +80,17 @@ const Content = styled.div`
       height: 40px;
       border-radius: 100%;
       background: white;
-      path{
-        color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg{
+        width: 16px;
+        height: 16px;
+        path{
+          color: black;
+        }
       }
+
       &.btn4{
         margin-left: auto;
       }

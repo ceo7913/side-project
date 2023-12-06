@@ -56,6 +56,10 @@ export const Action = () => {
     fetchGenres();
   },[])
 
+  // id 를 받아와서 map 으로 요소들을 만든 다음 하나로 합침
+  const getGenreText = (genreId) =>{
+    return genreId.map((el)=>genres[el]).join()
+  }
   return (
     <div>
       <MovieContainer>
@@ -72,7 +76,7 @@ export const Action = () => {
             <MovieWrapper>
               {actionData.results && actionData.results.map((el,index)=>(
                 <SwiperSlide key={index}>
-                    <MovieCard movie={el}/>
+                    <MovieCard movie={el} genreText={getGenreText(el.genre_ids)}/>
                 </SwiperSlide>
               ))}
             </MovieWrapper>
