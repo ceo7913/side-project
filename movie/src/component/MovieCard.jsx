@@ -53,7 +53,7 @@ const Content = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0,0,0,0.3);
+  background: rgba(10, 10, 10, 0.3);
   color: white;
   transition: 500ms;
   padding: 12px;
