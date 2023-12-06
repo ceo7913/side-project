@@ -1,21 +1,25 @@
 // over wrap 되는 영화의 데이터 컴포넌트
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import { MdClose } from "react-icons/md";
 import { Link } from 'react-router-dom';
 
-export const OverView = ({movie, setIsClick}) => {
+export const OverView = ({setIsClick, movieId, backdrop_path, title, overview}) => {
+    const [isVisible, setIsVisible] = useState(false);
+    const overViewRef = useRef(null)
+    // console.log(movie.id);
   return (
-    <HoverContainer className='overview'> 
+    <HoverContainer ref={overViewRef} className={`overview ${isVisible?'visible' : ''}`} > 
         <HoverWrapper>
             <CloseBtn onClick={()=>setIsClick(false)}>
                 <MdClose/>
             </CloseBtn>
-            <Link to={`/movie/${movie.id}`}>
-                <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} alt='영화 이미지'/>
+            <Link to={`/movie/${movieId}`}>
+                <img src={`https://image.tmdb.org/t/p/original/${backdrop_path}`} alt='영화 이미지'/>
             </Link>
             <HoverText>
-                <h2>{movie.title}</h2>
+                <h2>{title}</h2>
+                <p>{overview}</p>
             </HoverText>
         </HoverWrapper>
     </HoverContainer>
