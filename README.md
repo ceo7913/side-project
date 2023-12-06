@@ -1,6 +1,6 @@
 # A collection of side projects
 ### 목적
-- React 활용 능력 개선 및 프로젝트 진행을 위한 전반적인 능력 개선
+- React 활용 능력 향상 및 프로젝트 진행을 위한 전반적인 능력 향상
 
 ---
 
