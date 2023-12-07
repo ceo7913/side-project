@@ -4,6 +4,7 @@ import { fetchActionMovies } from '../store/reducer';
 import styled from 'styled-components';
 import { OverView } from './OverView';
 import { MovieCard } from './MovieCard';
+import { fetchGenres } from '../api/api';
 
 // swiper
 import { Swiper, SwiperSlide } from 'swiper/react'; // $ yarn add swiper
@@ -12,6 +13,7 @@ import 'swiper/css' // 스와이퍼에 기본 css 적용 import
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import '../styled/swiperCustomCss.css'
+
 
 
 export const Action = () => {
@@ -36,26 +38,14 @@ export const Action = () => {
     setIsClick(false);
   }
 
-  // 장르 추가
   useEffect(()=>{
-    const fetchGenres = async()=>{
-      try{
-        const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=8454804e2a979f263913c7e893c28db8&language=ko-KR')
-        // https://api.themoviedb.org/3/genre/movie/list?language=en
-        const data = await res.json();
-        const genreMap = data.genres.reduce((acc,genre)=>{
-          acc[genre.id] = genre.name;
-          // issue ! : genre.id 못받아옴, reduce 관련 error 출력
-          return acc
-        },{});
-        setGenres(genreMap)
-        // error 캐치시 console
-      }catch(error){
-        console.error(error);
-      }
+    const fetchActionMoviesGenres = async () =>{
+      dispatch(fetchActionMovies());
+      // 자주 사용되는 useEffect api.jsx 에 모아 놓고 dispatch 로 사용
+      const genres = await fetchGenres();
+      setGenres(genres)
     }
-    // useEffect 는 랜더링 될때 마다 실행되는 hook 이기 때문에 선언 후 실행까지 해줘야 완성이다.
-    fetchGenres();
+    fetchActionMoviesGenres();
   },[])
 
   // id 를 받아와서 map 으로 요소들을 만든 다음 하나로 합침

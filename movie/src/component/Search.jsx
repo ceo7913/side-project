@@ -4,6 +4,7 @@ import { BiSearch } from "react-icons/bi";
 import { MdClear } from "react-icons/md";
 import styled from 'styled-components';
 import { MovieCard } from './MovieCard';
+import { fetchGenres } from '../api/api';
 export const Search = () => {
     /*
         * issue
@@ -97,7 +98,21 @@ export const Search = () => {
                 setVisible(false);
             }
         }
+        const fetchSearchGenres = async ()=>{
+            try{
+                // ../api/api.jsx
+                const genres = await fetchGenres();
+                console.log(genres);
+            }catch(error){
+                console.error(error);
+            }
+        }
+        // const getGenreText = (genreId) =>{
+        //     return genreId.map((el)=>genres[el]).join()
+        // }
+
         document.addEventListener('mousedown',clickSideCloseEvent)
+        fetchSearchGenres()
         return () =>{
             // 리셋
             document.removeEventListener('mousedown',clickSideCloseEvent)
@@ -146,12 +161,11 @@ export const Search = () => {
   )
 }
 const List = (props) =>{
-    const {backdrop_path, title} = props.props;
-    const imgUrl = backdrop_path;
+    const {backdrop_path, title, genre_ids} = props.props;
     return(
         <div className='listItem'>
             {/* <img src={`https://image.tmdb.org/t/p/original/${imgUrl}`} alt="" /> */}
-            <MovieCard movie={props.props}/>
+            <MovieCard movie={props.props} genreText={genre_ids}/>
         </div>
     )
 }
