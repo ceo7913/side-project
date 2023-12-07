@@ -7,7 +7,7 @@
 - [moive-site](./movie/README.md)  
 - [paranoia-react-ver](https://github.com/ceo7913/Paranoia_refactor_React)  
 - [personal-blog](./personal-blog/README.md)
-
+- [shopping-mall](./shopping/README.md)
 ---
 
 ### 커밋 규칙
