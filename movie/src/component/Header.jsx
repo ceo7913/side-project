@@ -10,9 +10,6 @@ export const Header = () => {
     <HeaderContainer>
       <h1 className='logo'><Link to='/'><RiNetflixFill /></Link></h1>
       <Navigation/>
-      <HeaderRight>
-        <Search/>
-      </HeaderRight>
     </HeaderContainer>
   )
 }
@@ -38,9 +35,4 @@ const HeaderContainer = styled.header`
       }
     }
   }
-`
-const HeaderRight = styled.div`
-  margin-left: auto;
-  display: flex;
-  align-items: center;
 `

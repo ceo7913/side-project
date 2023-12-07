@@ -1,7 +1,7 @@
 import React from 'react';
 import GlobalStyle from './styled/GlobalStyled';
 import { Main } from './pages/Main';
-import {MainVideos, MovieList} from './component'
+import {MainVideos, MovieList, Search} from './component'
 import { Provider } from 'react-redux';
 import {thunk} from 'redux-thunk'; // $ yarn add redux-thunk
 import { applyMiddleware, compose, createStore } from 'redux';
@@ -14,6 +14,7 @@ export const App = () => {
   return (
     <>
       <GlobalStyle/>
+      <Search/>
       <MainVideos/>
       <Main/>
       <Provider store={store}>
