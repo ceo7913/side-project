@@ -42,9 +42,6 @@ const MovieItem = styled.div`
     display: block;
   }
   &:hover{
-    position: absolute;
-    top: 0;
-    left: 0;
     transform: scale(1.3);
     z-index: 10;
     border: solid 1px rgba(255,255,255,0.1);
@@ -60,7 +57,7 @@ const Content = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(10, 10, 10, 0.3);
+  background: rgba(10, 10, 10, 0.8);
   color: white;
   transition: 500ms;
   padding: 12px;

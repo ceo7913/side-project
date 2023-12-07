@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { BiSearch } from "react-icons/bi";
 import { MdClear } from "react-icons/md";
 import styled from 'styled-components';
+import { MovieCard } from './MovieCard';
 export const Search = () => {
     /*
         * issue
@@ -149,7 +150,8 @@ const List = (props) =>{
     const imgUrl = backdrop_path;
     return(
         <div className='listItem'>
-            <img src={`https://image.tmdb.org/t/p/original/${imgUrl}`} alt="" />
+            {/* <img src={`https://image.tmdb.org/t/p/original/${imgUrl}`} alt="" /> */}
+            <MovieCard movie={props.props}/>
         </div>
     )
 }
@@ -226,6 +228,7 @@ const ResultContainer = styled.div`
             flex-wrap: wrap;
             gap: 20px;
             .listItem{
+                position: relative;
                 img{
                     width: 350px;
                 }
