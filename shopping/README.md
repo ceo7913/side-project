@@ -10,6 +10,8 @@
 
 ## 사용한 도구 및 라이브러리
 - firebase
+- styled-components
 ```
 $ npm install firebase
+$ yarn add styled-components
 ```
