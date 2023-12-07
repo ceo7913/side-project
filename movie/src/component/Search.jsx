@@ -1,15 +1,27 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { BiSearch } from "react-icons/bi";
 import { MdClear } from "react-icons/md";
 import styled from 'styled-components';
 export const Search = () => {
+    /*
+        * issue
+        1. 검색어를 지워도 결과창이 남아 있음 (해결)
+        2. 스크롤이 이동된 상태에서 검색창이 생성될 경우 컨텐츠가 서로 겹치는 오류가 있음 (해결)
+        3. 스크롤바가 2개가 생성됨(body,Search) (해결)
+        4. 검색창에 검색어 입력후 엔터키를 치면 영역이 닫히는 오류 (해결)
+        => 리액트는 enter 키를 누르면 자동으로 submit 이 기본값 설정 
+        5. 텍스트가 없을때 검색창 외에 다른곳을 클릭하면 검색창이 닫히도록 수정
+        (텍스트가 있을때에는 다른 곳을 클릭해도 검색창이 닫히지 않음)
+    
+    */
     const [text, setText] = useState(''); // 검색어의 텍스트를 받아올 state
     const [visible, setVisible] = useState(false); // 인풋창의 기본 속성값
     const [showClearBtn, setShowClearBtn] = useState(); // 검색어 입력 여부를 보기 위해 만든 상태변수
 
     const [list, setList] =useState(false) // 검색리스트 유무 체크
     const [movieList, setMovieList] = useState([]); // 검색 결과 배열 관리 (출력)
+    const searchRef = useRef();
 
     let data = []; // 영화 리스트가 들어올 변수
 
@@ -30,6 +42,10 @@ export const Search = () => {
 
         // 텍스트를 클릭으로 제거했을 때 아이콘도 같이 없어지게 함
         setShowClearBtn(false);
+
+        // list 초기화
+        setList(false);
+        setMovieList([]);
     }
 
     const fetch = async () =>{
@@ -38,9 +54,57 @@ export const Search = () => {
         data = res.data.results || [];
         setMovieList(data)
     }
+
+    const inputChange = (e) =>{
+        setText(e.target.value);
+        // trim() => 있는지 없는지 검사(문자열에서 공백을 제거해주는 메서드 => 제거할게 있으면 true 로 판단)
+        setShowClearBtn(e.target.value.trim()!=='');
+        // fetch(setMovieList());
+        setList(true);
+        if(e.target.value.trim()){
+            fetch(setMovieList());
+            setList(true);
+        }else{
+            setMovieList([]);
+            setList(false);
+        }
+    }
+
+    const enterPress = (e) =>{
+        // console.log(e.key); => key value
+        if(e.key ==='Enter'){
+            // preventDefault = 브라우저가 적용하는 기본 동작을 방지하는 역할
+            e.preventDefault();
+        }
+    }
+
+    useEffect(()=>{
+        if(!list){
+            document.body.classList.remove('no-scroll')
+        }else{
+            document.body.classList.add('no-scroll')
+        }
+        return () =>{
+            // 리셋 => 동작을 한다면 필수까지는 아니지만 구문이 남아있는 찝찝함을 해소해야함
+            document.body.classList.remove('no-scroll')
+        }
+    },[list])
+
+    useEffect(()=>{
+        const clickSideCloseEvent = (e)=>{
+            if(searchRef.current && !searchRef.current.contains(e.target) && !text){
+                setVisible(false);
+            }
+        }
+        document.addEventListener('mousedown',clickSideCloseEvent)
+        return () =>{
+            // 리셋
+            document.removeEventListener('mousedown',clickSideCloseEvent)
+        }
+    },[text])
   return (
     <>
-        <SearchForm visible={`${visible}`} className={visible ? 'on' : null}>
+        <SearchForm visible={`${visible}`} className={visible ? 'on' : null} ref={searchRef}>
             <button className='search-btn' onClick={onToggleEvent}>
                 <BiSearch/>
             </button>
@@ -49,13 +113,14 @@ export const Search = () => {
                 type="text" 
                 placeholder='검색어를 입력하세요'
                 value={text}
-                onChange={(e)=>{
-                    setText(e.target.value);
-                    // trim() => 문자열 좌우에서 공백 제거 
-                    setShowClearBtn(e.target.value.trim()!=='');
-                    fetch(setMovieList());
-                    setList(true);
-                }}
+                onChange={inputChange}
+                /*
+                키보드 이벤트 함수 onKeyDown/onKeyUp/onKeyPress
+                onKeyDown키를 눌렀을 때 이벤트 발생즉, 키를 입력하면 이벤트 발생 후 문자가 입력된다.
+                onKeyUp키를 눌렀다 놓았을 때 이벤트 발생즉, 키를 입력하면 문자 입력 후 이벤트가 발생된다.
+                즉 onKeyPress 와 onKeyDown과 이벤트는 같다.
+                */
+                onKeyDown={enterPress}
                 />
             )}
             {showClearBtn &&(
@@ -91,11 +156,12 @@ const List = (props) =>{
 // yarn add --dev @babel/preset-react
 const SearchForm = styled.form`
     display: flex;
-    position: relative;
-    top: 0;
-    left: 0;
+    position: fixed;
+    top: 15px;
+    right: 32px;
     transition: 500ms;
     width: 30px;
+    z-index: 11;
     &.on{
         border: solid 1px #ffffff;
         transition: 500ms;
@@ -130,18 +196,18 @@ const ResultContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
+    max-height: 100vh;
     background: black;
-    z-index: -1;
+    z-index: 10;
     padding: 100px;
     box-sizing: border-box;
-    overflow: scroll;
+    overflow: auto;
     display: none;
     &.on{
         display: block;
     }
     .searchMovie{
         width: 100%;
-        height: 100%;
         position: relative;
         top: 0;
         left: 0;
