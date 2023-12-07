@@ -3,10 +3,17 @@ import styled from 'styled-components';
 import { IoIosPlay, IoIosArrowDown } from "react-icons/io";
 import { LuPlus } from 'react-icons/lu';
 import { SlLike } from 'react-icons/sl'
+import { useNavigate } from 'react-router-dom';
 
-export const MovieCard = ({movie, genreText, onClick}) => {
+export const MovieCard = ({movie, genreText}) => {
+  const navigate = useNavigate(); // 링크로 이동시켜주는 요소
+
+  const overViewEvent = () =>{
+    navigate(`movie/${movie.id}`)
+  }
+
   return (
-    <MovieItem onClick={()=>onClick(movie)}> 
+    <MovieItem onClick={overViewEvent}> 
       {/* 선택된 객체에 따라 다른 데이터를 불러와야 함 */}
       <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} alt='영화 리스트 이미지'/>
         <Content className='addi-content'>
