@@ -32,7 +32,13 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	overflow-x: hidden;
 }
+.no-scroll{
+	// 검색 리스트 true 일때 body 태그 스크롤 x
+	overflow-y: hidden;
+}
+
 ol, ul {
 	list-style: none;
 }
@@ -71,6 +77,7 @@ body,html{
 	background: #000000;
 
 }
+
 `
 
 export default GlobalStyle
