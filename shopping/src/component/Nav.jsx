@@ -25,7 +25,14 @@ const logoutOfGoogle = () =>{
     <HeaderContainer>
         <h1><Link to='/'>shop</Link></h1>
         <div className='userWrap'>
-          <Link to='/product/upload'>업로드</Link>
+          {user && user.isAdmin &&(
+            /*
+              user data 가 admin 일 때만 생성
+              but 이렇다 하더라도 해당 경로를 직접적으로 알고 있으면 접근이 가능하다 따라서 추가 조건이 필요
+              관리자 인증(조건에 하나라도 만족하지 못하면 페이지를 이동할 수 없게 홈으로 이동)(index.jsx 확인)
+            */
+            <Link to='/product/upload'>업로드</Link>
+          )}
           {user && <UserData user={user}/>}
           {!user ? 
             (<button className='loginBtn' onClick={loginOfGoogle}>LOGIN</button>):
