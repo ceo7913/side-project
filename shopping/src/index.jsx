@@ -6,7 +6,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import GlobalStyle from './styled/GlobalStyled';
 
 // pages
-import { MyCart, NotFound, ProductDetail } from './pages';
+import { MyCart, NotFound, ProductDetail, UpLoadProduct } from './pages';
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -20,6 +20,7 @@ const routes = createBrowserRouter([
     children:[
       {path: '/cart', element: <MyCart/>},  
       {path: '/products/detail/:id', element: <ProductDetail/>},  
+      {path: '/product/upload', element:<UpLoadProduct/>},
     ]
   }
 ])
@@ -27,6 +28,6 @@ const routes = createBrowserRouter([
 root.render(
   <>
     <RouterProvider router={routes}/>
-    <GlobalStyle/>
+    {/* <GlobalStyle/> */}
   </>
 );

@@ -1,5 +1,6 @@
 import { MyCart } from "./MyCart";
 import { NotFound } from "./NotFound";
 import { ProductDetail } from "./ProductDetail";
+import { UpLoadProduct } from './UpLoadProduct';
 
-export {ProductDetail, NotFound, MyCart}
+export {ProductDetail, NotFound, MyCart, UpLoadProduct}
