@@ -51,4 +51,20 @@ const HeaderContainer = styled.header`
     align-items: center;
     padding: 12px;
     gap: 24px;
+    .userWrap{
+      display: flex;
+      margin-left: auto;
+      align-items: center;
+      gap: 12px;
+      button{
+        padding: 6px 12px;
+        border-radius: 6px;
+        &.loginBtn{
+          background: pink;
+        }
+        &.logOutBtn{
+          background: gray;
+        }
+      }
+    }
 `

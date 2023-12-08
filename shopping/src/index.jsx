@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom/client';
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { useAuthContext } from './context/AuthContext';
 
-//css
-import GlobalStyle from './styled/GlobalStyled';
-
 // pages
 import { MyCart, NotFound, ProductDetail, UpLoadProduct } from './pages';
 import App from './App';
@@ -44,6 +41,5 @@ const routes = createBrowserRouter([
 root.render(
   <>
     <RouterProvider router={routes}/>
-    {/* <GlobalStyle/> */}
   </>
 );

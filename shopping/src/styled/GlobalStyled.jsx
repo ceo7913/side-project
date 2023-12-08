@@ -29,7 +29,6 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
-
 ol, ul {
 	list-style: none;
 }
@@ -51,6 +50,12 @@ a{
 img{
 	display: block;
 	width: 100%;
+}
+button{
+	border: none;
+	outline: none;
+	background: transparent;
+	cursor: pointer;
 }
 `
 
