@@ -13,14 +13,13 @@ export const Nav = () => {
 const logoutOfGoogle = () =>{
     googleLogOut().then(setUser);
 }
-  useEffect(()=>{
-    onUserState((user)=>{
-      // 마운트 할때마다 user 값을 넘겨줘서 새로고침해도 login 이 풀리지 않도록 한다.
-      setUser(user);
-    })
-    
-  },[])
-  console.log(user)
+useEffect(()=>{
+  onUserState((user)=>{
+    // 마운트 할때마다 user 값을 넘겨줘서 새로고침해도 login 이 풀리지 않도록 한다.
+    setUser(user);
+  })
+},[]);
+
   return (
     <HeaderContainer>
         <h1><Link to='/'>shop</Link></h1>
@@ -33,10 +32,14 @@ const logoutOfGoogle = () =>{
             */
             <Link to='/product/upload'>업로드</Link>
           )}
-          {user && <UserData user={user}/>}
           {!user ? 
             (<button className='loginBtn' onClick={loginOfGoogle}>LOGIN</button>):
-            (<button className='logOutBtn'onClick={logoutOfGoogle}>LOGOUT</button>)
+            (
+              <>
+                <UserData user={user}/>
+                <button className='logOutBtn'onClick={logoutOfGoogle}>LOGOUT</button>
+              </>
+            )
           }
         </div>
     </HeaderContainer>
@@ -44,5 +47,8 @@ const logoutOfGoogle = () =>{
 }
 
 const HeaderContainer = styled.header`
-    
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    gap: 24px;
 `
