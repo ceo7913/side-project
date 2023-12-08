@@ -11,7 +11,9 @@
 ## 사용한 도구 및 라이브러리
 - firebase
 - styled-components
+- react-router
 ```
-$ npm install firebase
+$ yarn add firebase
 $ yarn add styled-components
+$ yarn add react-router-dom
 ```
