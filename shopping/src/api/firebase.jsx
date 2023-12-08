@@ -1,5 +1,6 @@
 // 필요한 SDK에서 필요한 기능을 가져옴
 import { initializeApp } from "firebase/app";
+import { GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 
 // 파이어베이스에서 요구하는 변수명 조차도 따르는게 좋다.
 const firebaseConfig = {
@@ -21,3 +22,48 @@ const firebaseConfig = {
 
 // Firebase 초기화
 const app = initializeApp(firebaseConfig);
+
+// firebase 문서에 상세하게 사용방법이 기입되어 있다.
+const provider = new GoogleAuthProvider(); // 구글 인증 제공자
+const auth = getAuth(); // 인증에 대한 정보
+
+// 구글 자동 로그인 방지
+provider.setCustomParameters({
+    prompt: 'select_account' // provider 가 들어올때 마다 구글폼 을 띄우겠다는 뜻
+})
+
+// google login function
+export async function googleLogin(){
+    try{
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+        console.log(user);
+        return user
+    }catch(error){
+        console.error(error)
+    }
+}
+// google logout function
+export async function googleLogOut(){
+    try{
+        await signOut(auth); // signOut = 기존에 정보들을 초기화하는 훅
+    }catch(error){
+        console.error(error)
+    }
+}
+
+// 로그인 시 새로고침을 해도 로그인을 계속 유지
+export function onUserState(callback){
+    onAuthStateChanged(auth, async(user)=>{
+    // onAuthStateChanged = 사용자 인증 상태 변화를 체크하는 hook(로그인, 로그아웃)
+        if(user){
+            try{
+                callback(user);
+            }catch(error){
+                console.error(error);
+            }
+        }else{
+            callback(null);
+        };
+    })
+}

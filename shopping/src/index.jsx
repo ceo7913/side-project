@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 //css
@@ -8,6 +7,7 @@ import GlobalStyle from './styled/GlobalStyled';
 
 // pages
 import { MyCart, NotFound, ProductDetail } from './pages';
+import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
