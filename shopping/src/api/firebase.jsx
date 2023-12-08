@@ -1,7 +1,7 @@
 // 필요한 SDK에서 필요한 기능을 가져옴
 import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
-
+import {get, getDatabase, ref} from 'firebase/database'
 // 파이어베이스에서 요구하는 변수명 조차도 따르는게 좋다.
 const firebaseConfig = {
     // .env.local 에서 저장한 변수를 가져오는 방법
@@ -27,6 +27,8 @@ const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider(); // 구글 인증 제공자
 const auth = getAuth(); // 인증에 대한 정보
 
+const database = getDatabase(app);
+
 // 구글 자동 로그인 방지
 provider.setCustomParameters({
     prompt: 'select_account' // provider 가 들어올때 마다 구글폼 을 띄우겠다는 뜻
@@ -37,7 +39,6 @@ export async function googleLogin(){
     try{
         const result = await signInWithPopup(auth, provider);
         const user = result.user;
-        console.log(user);
         return user
     }catch(error){
         console.error(error)
@@ -58,7 +59,10 @@ export function onUserState(callback){
     // onAuthStateChanged = 사용자 인증 상태 변화를 체크하는 hook(로그인, 로그아웃)
         if(user){
             try{
-                callback(user);
+                // callback(user);
+                // admin or user 의 정보를 보냄
+                const updateUser = await adminUser(user);
+                callback(updateUser)
             }catch(error){
                 console.error(error);
             }
@@ -66,4 +70,23 @@ export function onUserState(callback){
             callback(null);
         };
     })
+}
+
+async function adminUser(user){
+    try{
+        const snapshot = await get(ref(database, 'admin'));
+        // snapshot = firebase 안에 database 안에 admin 폴더를 검색
+        
+        // snapshot.exists() => snapshot 안에 data 에 정보가 있는지 유무를 봄
+        if(snapshot.exists()){
+            // snapshot 에 있는 정보의 값을 admins 에 담아 놓음
+            const admins = snapshot.val();
+            // 검색된 admins에 현재 로그인된 사용자의 이메일과 일치하는 이메일이 있는지 확인
+            const isAdmin = admins.includes(user.email);
+            return{...user, isAdmin};
+        }
+        return user
+    }catch(error){
+        console.error(error)
+    }
 }
