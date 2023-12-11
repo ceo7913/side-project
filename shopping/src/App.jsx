@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 
 // css
 import GlobalStyle from "./styled/GlobalStyled";
+import { AllProduct } from "./pages/AllProduct";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <GlobalStyle/>
         <Nav/>
         <Outlet/>
+        <AllProduct/>
       </AuthContextProvider>
     </>
   );

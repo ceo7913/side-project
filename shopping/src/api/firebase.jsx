@@ -93,7 +93,7 @@ async function adminUser(user){
     }
 }
 
-// uuid
+// 상품을 database 에 업로드
 export async function addProducts(product, image){
     const id = uuid()
     // database 에 products 경로에 id 값으로 data 를 넣음
@@ -102,4 +102,15 @@ export async function addProducts(product, image){
         id,
         image,
     })
+}
+
+// database 에 있는 상품을 가져오기
+// async 는 비동기 방식에 데이터 처리 방법(JS promise의 단점을 보완한 최신 비동기 처리 방식 코드)
+export async function getProducts(){ // 받아서 뿌려주는 부분이기 때문에 매개변수는 필요없음
+   const snapShot = await get(ref(database,'products')); // 참조할 주소는 업로드했던 주소와 동일해야 가져올 수 있다
+   if(snapShot.exists()){
+    return Object.values(snapShot.val()) // object 로 value(값)을 받아옴
+   }else{
+    return [] // 아니면 빈값으로 return
+   }
 }
