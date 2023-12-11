@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { googleLogOut, googleLogin, onUserState } from '../api/firebase';
 import { UserData } from './UserData';
 
+import { RiFileUploadLine } from "react-icons/ri";
+
 export const Nav = () => {
   const [user, setUser] = useState()
   const loginOfGoogle = () =>{
@@ -30,7 +32,7 @@ useEffect(()=>{
               but 이렇다 하더라도 해당 경로를 직접적으로 알고 있으면 접근이 가능하다 따라서 추가 조건이 필요
               관리자 인증(조건에 하나라도 만족하지 못하면 페이지를 이동할 수 없게 홈으로 이동)(index.jsx 확인)
             */
-            <Link to='/product/upload'>업로드</Link>
+            <Link to='/product/upload' className='uploadBtn'>업로드{RiFileUploadLine}</Link>
           )}
           {!user ? 
             (<button className='loginBtn' onClick={loginOfGoogle}>LOGIN</button>):
@@ -51,6 +53,7 @@ const HeaderContainer = styled.header`
     align-items: center;
     padding: 12px;
     gap: 24px;
+    border-bottom: solid 1px rgba(0,0,0,0.1);
     .userWrap{
       display: flex;
       margin-left: auto;
@@ -59,12 +62,16 @@ const HeaderContainer = styled.header`
       button{
         padding: 6px 12px;
         border-radius: 6px;
+        color: white;
         &.loginBtn{
           background: pink;
         }
         &.logOutBtn{
           background: gray;
         }
+      }
+      .uploadBtn{
+
       }
     }
 `
