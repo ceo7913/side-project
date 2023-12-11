@@ -13,9 +13,11 @@
 - styled-components
 - react-router
 - react-icons
+- uuid (식별자를 만들어주는 라이브러리(숫자와 영문으로 조합된 식별자 코드를 부여해서 고유값으로 사용하는 라이브러리))
 ```
 $ yarn add firebase
 $ yarn add styled-components
 $ yarn add react-router-dom
 $ yarn add react-icons
+$ yarn add uuid 
 ```
