@@ -12,8 +12,10 @@
 - firebase
 - styled-components
 - react-router
+- react-icons
 ```
 $ yarn add firebase
 $ yarn add styled-components
 $ yarn add react-router-dom
+$ yarn add react-icons
 ```
