@@ -1,7 +1,10 @@
 // 필요한 SDK에서 필요한 기능을 가져옴
 import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
-import {get, getDatabase, ref} from 'firebase/database'
+import {get, getDatabase, ref, set} from 'firebase/database';
+
+import {v4 as uuid} from 'uuid';
+
 // 파이어베이스에서 요구하는 변수명 조차도 따르는게 좋다.
 const firebaseConfig = {
     // .env.local 에서 저장한 변수를 가져오는 방법
@@ -10,7 +13,6 @@ const firebaseConfig = {
     projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
     databaseURL: process.env.REACT_APP_FIREBASE_DB_URL,
 }
-
 /*
     process.env = 환경변수 node.js 에 전역객체
     환경변수 : 실행중인 프로세스에 사용할 수 있고, 애플리케이션을 구현하는 키-값
@@ -89,4 +91,15 @@ async function adminUser(user){
     }catch(error){
         console.error(error)
     }
+}
+
+// uuid
+export async function addProducts(product, image){
+    const id = uuid()
+    // database 에 products 경로에 id 값으로 data 를 넣음
+    return set(ref(database, `products/${id}`),{
+        ...product,
+        id,
+        image,
+    })
 }
