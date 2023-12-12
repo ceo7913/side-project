@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -57,6 +57,14 @@ button{
 	background: transparent;
 	cursor: pointer;
 }
+
+.container{
+	max-width: 1200px;
+	margin: 0px auto;
+	padding: 100px 0px;
+	
+}
+
 `
 
 export default GlobalStyle

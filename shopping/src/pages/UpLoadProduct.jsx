@@ -132,14 +132,22 @@ export const UpLoadProduct = () => {
 						value={product.price}
 						onChange={productInfoChange}
 					/>
-					<input
-						// 상품 분류
-						type="text"
-						name='category'
-						placeholder='상품 분류를 입력하세요'
-						value={product.category}
-						onChange={productInfoChange}
-					/>
+					{/* <input
+	// 상품 분류
+	type="text"
+	name='category'
+	placeholder='상품 분류를 입력하세요'
+	value={product.category}
+	onChange={productInfoChange}
+/> */}
+					<select name='category' value={product.category} onChange={productInfoChange}>
+						<option value=''>분류 선택</option>
+						<option value='top'>상의</option>
+						<option value='bottom'>하의</option>
+						<option value='outer'>아우터</option>
+						<option value='accessory'>악세사리</option>
+						<option value='etc'>기타</option>
+					</select>
 					<input
 						// 상품 사이즈
 						type="text"
