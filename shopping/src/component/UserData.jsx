@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 
 // 받아온 user 정보를 담는 컴포넌트
-export const UserData = ({user}) => {
+export const UserData = ({ user }) => {
   return (
     <UserInfo>
-        {/* user 정보에 담긴 정보들*/}
-        <img src={user.photoURL} alt={user.displayName} />
-        <span>{user.displayName}</span>
+      {/* user 정보에 담긴 정보들*/}
+      <img src={user.photoURL} alt={user.displayName} />
+      <span>{user.displayName}</span>
     </UserInfo>
   )
 }

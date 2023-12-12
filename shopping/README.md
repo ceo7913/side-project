@@ -8,12 +8,17 @@
 - 게시판 기능(QnA -> 댓글달기)
 - 리스트 정렬기능(가격순, 상품명 순으로)
 
+* 수정사항
+- 업로드메뉴 => 카테고리 변경, 컬러칩 추가, 업로드된 리스트들을 카테고리별로 출력
+
 ## 사용한 도구 및 라이브러리
 - firebase
 - styled-components
 - react-router
 - react-icons
 - uuid (식별자를 만들어주는 라이브러리(숫자와 영문으로 조합된 식별자 코드를 부여해서 고유값으로 사용하는 라이브러리))
+
+- webgradients (https://webgradients.com/)
 ```
 $ yarn add firebase
 $ yarn add styled-components
