@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { uploadImg } from '../api/imgUpload';
 import { addProducts } from '../api/firebase';
 import styled from 'styled-components';
+import { CategoryContext } from '../context/CategoryContext';
 
 export const UpLoadProduct = () => {
 	const [file, setFile] = useState(null);
@@ -13,6 +14,10 @@ export const UpLoadProduct = () => {
 
 	// image 는 dom 에 직접적으로 작성되기 때문에 useRef 로 dom에 직접 접근해서 초기화 해야 한다.
 	const fileRef = useRef();
+
+	// useContext import
+	const { categoryList } = useContext(CategoryContext)
+	// console.log(categoryList); // product/upload && => ['top', 'bottom', 'outer', 'accessory', 'etc']
 
 	const colors = [
 		'#a6c1ee', '#e6dee9', '#c2e9fb', '#c2e9fb', '#d4fc79',
@@ -140,14 +145,23 @@ export const UpLoadProduct = () => {
 	value={product.category}
 	onChange={productInfoChange}
 /> */}
-					<select name='category' value={product.category} onChange={productInfoChange}>
-						<option value=''>분류 선택</option>
-						<option value='top'>상의</option>
-						<option value='bottom'>하의</option>
-						<option value='outer'>아우터</option>
-						<option value='accessory'>악세사리</option>
-						<option value='etc'>기타</option>
+
+					{/* <select name='category' value={product.category} onChange={productInfoChange}>
+	<option value=''>분류 선택</option>
+	<option value='top'>상의</option>
+	<option value='bottom'>하의</option>
+	<option value='outer'>아우터</option>
+	<option value='accessory'>악세사리</option>
+	<option value='etc'>기타</option>
+</select> */}
+					{/* ▼ update ver ▼ */}
+					<select name="category" value={product.category} onChange={productInfoChange}>
+						<option value="">분류선택</option>
+						{categoryList.map((el, index) => (
+							<option key={index} value={el}>{el}</option>
+						))}
 					</select>
+
 					<input
 						// 상품 사이즈
 						type="text"
