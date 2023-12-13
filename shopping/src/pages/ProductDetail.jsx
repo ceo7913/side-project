@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components';
+import useCart from './../context/UseCart';
 
 // DetialPageEvent 에서 클릭한 정보값을 받아옴
 export const ProductDetail = () => {
+   const { addItemCart } = useCart()
+   const [success, setSuccess] = useState(); // 장바구니 아이템 전송 여부 값
+   const [selected, setSelected] = useState(setOpt && setOpt[0]); // => setOpt 배열이 있다면 setOpt 의 배열의 첫번째를 선택
+
    // useLocation = useNavigate 에서 받아온 정보를 state 에 연결 하겠다는 구문
    const state = useLocation().state
    // console.log(state); // => {title: '텍스트 상품1', id: '94908969-2414-43d4-b8cb-1ed319ad0c00', image: 'http://res.cloudinary.com/dpuibr5sp/image/upload/v1702361179/f1idfn299l5cmfafmfr8.jpg', price: '216,600', option: 'free', …}
@@ -13,10 +18,19 @@ export const ProductDetail = () => {
    let setOpt = option.split(',').map((option) => option.trim()) // ',' 기준으로 trim 으로 잘라냄
    // console.log(setOpt); // => ['S', 'M', 'L', 'XL']
 
-   const [selected, setSelected] = useState(setOpt && setOpt[0]); // => setOpt 배열이 있다면 setOpt 의 배열의 첫번째를 선택
    const selectOpt = (e) => {
       setSelected(e.target.value) // 선택한 setOpt 에 value 를 담음
    }
+
+   const cartItem = () => {
+      // option: selected => 선택한 옵션 / quantity: 1 => 구매수량
+      const product = { id, image, title, price, option: selected, quantity: 1 }
+      addItemCart.mutate(product, {
+         onSuccess: () => {
+            setSuccess('장바구니에 상품이 추가되었습니다.');
+         }
+      });
+   };
 
    return (
       <div className='container'>
@@ -44,6 +58,12 @@ export const ProductDetail = () => {
                   ))}
                </div>
             </div>
+            {/* shopping button */}
+            <div className='ditailBtns'>
+               <button className='cartBtn' onClick={cartItem}>장바구니 담기</button>
+               <button className='buyBtn'>구매하기</button>
+            </div>
+            {success && <p>{success}</p>}
          </DetailPage>
       </div>
    )
