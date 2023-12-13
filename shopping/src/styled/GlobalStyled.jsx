@@ -57,12 +57,16 @@ button{
 	background: transparent;
 	cursor: pointer;
 }
-
 .container{
 	max-width: 1200px;
 	margin: 0px auto;
 	padding: 100px 0px;
 	
+}
+.itemTitle{
+	font-size: 24px;
+	margin-bottom: 36px;
+	font-weight: normal;
 }
 
 `
