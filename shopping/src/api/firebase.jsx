@@ -1,7 +1,7 @@
 // 필요한 SDK에서 필요한 기능을 가져옴
 import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
-import { get, getDatabase, ref, set } from 'firebase/database';
+import { get, getDatabase, ref, remove, set } from 'firebase/database';
 
 import { v4 as uuid } from 'uuid';
 
@@ -140,4 +140,10 @@ export async function updateCart(userId, product) {
    } catch (error) {
       console.error(error)
    }
+}
+
+// 장바구니 목록 삭제
+export async function deleteCart(userId, productId) {
+   // remove from firebase/database
+   return remove(ref(database, `cart/${userId}/${productId}`)) // 해당 경로에 있는 productId remove
 }

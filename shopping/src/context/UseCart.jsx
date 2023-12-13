@@ -1,5 +1,5 @@
 // Cart 를 가져올때 어떠한 아이디가 어떤 내용이 있는지 검사
-import { getCart, updateCart } from '../api/firebase';
+import { deleteCart, getCart, updateCart } from '../api/firebase';
 import { useAuthContext } from './AuthContext'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
@@ -32,5 +32,12 @@ export default function useCart() {
       }
    })
 
-   return { cartInfo, addItemCart } // [] => {}
+   const removeCart = useMutation({
+      mutationFn: (id) => deleteCart(uid, id), // deleteCart 함수에 uid 와 id 전달
+      onSuccess: () => {
+         queryClient.invalidateQueries(['cart', uid])
+      }
+   })
+
+   return { cartInfo, addItemCart, removeCart } // [] => {} / 함수 내보냄 return
 }
