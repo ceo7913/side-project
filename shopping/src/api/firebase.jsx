@@ -4,6 +4,7 @@ import { GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup, signO
 import { get, getDatabase, ref, remove, set } from 'firebase/database';
 
 import { v4 as uuid } from 'uuid';
+import { AllProduct } from './../pages/AllProduct';
 
 // 파이어베이스에서 요구하는 변수명 조차도 따르는게 좋다.
 const firebaseConfig = {
@@ -146,4 +147,44 @@ export async function updateCart(userId, product) {
 export async function deleteCart(userId, productId) {
    // remove from firebase/database
    return remove(ref(database, `cart/${userId}/${productId}`)) // 해당 경로에 있는 productId remove
+}
+
+// 카테고리 상품 가져오기
+export async function getCategoryProduct(category) {
+   // async 서버에서 get 가져온다.ref(레퍼지토리) database 에서, products 라는 파일을 .then 있으면 snapshot 
+   return get(ref(database, 'products')).then((snapshot) => {
+      if (snapshot.exists()) {
+         // 카테고리별로 아이템 나누는 방식은 전체 상품을 먼저 구한 뒤에 필터로 카테고리별로 구분
+         const allProducts = Object.values(snapshot.val());
+         const filterProducts = allProducts.filter((product) => product.category === category);
+         return filterProducts
+      }
+      return []; // 상품이 없다면 빈배열을 출력
+   })
+}
+
+// 상품 검색
+export async function searchProducts(query) {
+   try {
+      // 같은 수행 다른 방법
+      // return get(ref(database, 'products')).then((snapshot) => {
+      const dbRef = ref(database, 'products');
+      const snapshot = await get(dbRef);
+      if (snapshot.exists()) {
+         const data = snapshot.val();
+         const allProducts = Object.values(data)
+         if (allProducts.length === 0) {
+            return []
+         }
+         const matchProducts = allProducts.filter((product) => {
+            const itemTitle = product.title;
+            return itemTitle.includes(query);
+         });
+         return matchProducts;
+      } else {
+         return []
+      }
+   } catch (error) {
+      console.error(error);
+   }
 }

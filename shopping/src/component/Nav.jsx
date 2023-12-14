@@ -28,6 +28,7 @@ export const Nav = () => {
       <h1><Link to='/'>shop</Link></h1>
       <MainMenu />
       <div className='userWrap'>
+        <Link to='/search'>검색</Link>
         {user && user.isAdmin && (
           /*
             user data 가 admin 일 때만 생성
