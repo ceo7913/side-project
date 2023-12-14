@@ -20,7 +20,7 @@ export const ProductDetail = () => {
    // console.log(state); // => {title: '텍스트 상품1', id: '94908969-2414-43d4-b8cb-1ed319ad0c00', image: 'http://res.cloudinary.com/dpuibr5sp/image/upload/v1702361179/f1idfn299l5cmfafmfr8.jpg', price: '216,600', option: 'free', …}
 
 
-   console.log(option); // => option: 'S,M,L,XL' / 배열이 아니라 string 으로 담김
+   // console.log(option); // => option: 'S,M,L,XL' / 배열이 아니라 string 으로 담김
    // ',' 기준으로 trim 으로 잘라냄
    // console.log(setOpt); // => ['S', 'M', 'L', 'XL']
 

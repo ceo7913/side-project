@@ -68,6 +68,16 @@ button{
 	margin-bottom: 36px;
 	font-weight: normal;
 }
+.productList{
+	display: flex;
+	gap: 20px 5%;
+	flex-wrap: wrap;
+	li{
+		flex-basis: 30%;
+		flex-shrink: 0;
+	}
+	
+}
 
 `
 

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 export const Products = ({ products }) => {
    return (
       <>
-         <ProductList className='productLits'>
+         <ProductList className='productList'>
             {products && products.map((product) => (
                <li key={product.id} >
                   <DetailPageEvent product={product} />
