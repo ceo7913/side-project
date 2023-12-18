@@ -5,32 +5,32 @@ import { LuPlus } from 'react-icons/lu';
 import { SlLike } from 'react-icons/sl'
 import { useNavigate } from 'react-router-dom';
 
-export const MovieCard = ({movie, genreText}) => {
-  const navigate = useNavigate(); // 링크로 이동시켜주는 요소
+export const MovieCard = ({ movie, genreText }) => {
+	const navigate = useNavigate(); // 링크로 이동시켜주는 요소
 
-  const overViewEvent = () =>{
-    navigate(`movie/${movie.id}`)
-  }
+	const overViewEvent = () => {
+		navigate(`movie/${movie.id}`)
+	}
 
-  return (
-    <MovieItem onClick={overViewEvent}> 
-      {/* 선택된 객체에 따라 다른 데이터를 불러와야 함 */}
-      <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} alt='영화 리스트 이미지'/>
-        <Content className='addi-content'>
-          <p>{movie.title}</p>
-          <div className='btn-wrapper'>
-            <button className='btn1' name='플레이'><IoIosPlay/></button>
-            <button className='btn2' name='추가'><LuPlus/></button>
-            <button className='btn3' name='좋아요'><SlLike/></button>
-            <button className='btn4' name='다운로드'><IoIosArrowDown/></button>
-          </div>
-          <div className='genres-wrapper'>
-              {/* 받아온 장르의 id를 가지고 있는 요소 */}
-              <span>{genreText}</span>
-          </div>
-        </Content>
-    </MovieItem>        
-  )
+	return (
+		<MovieItem onClick={overViewEvent}>
+			{/* 선택된 객체에 따라 다른 데이터를 불러와야 함 */}
+			<img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} alt='영화 리스트 이미지' />
+			<Content className='addi-content'>
+				<p>{movie.title}</p>
+				<div className='btn-wrapper'>
+					<button className='btn1' name='플레이'><IoIosPlay /></button>
+					<button className='btn2' name='추가'><LuPlus /></button>
+					<button className='btn3' name='좋아요'><SlLike /></button>
+					<button className='btn4' name='다운로드'><IoIosArrowDown /></button>
+				</div>
+				<div className='genres-wrapper'>
+					{/* 받아온 장르의 id를 가지고 있는 요소 */}
+					<span>{genreText}</span>
+				</div>
+			</Content>
+		</MovieItem>
+	)
 }
 
 const MovieItem = styled.div`
@@ -76,7 +76,7 @@ const Content = styled.div`
     opacity: 0;
     /* 1000ms(1초) 뒤에 실행 */
     transition: 300ms 1000ms;
-  }
+  } 
   .btn-wrapper{
     display: flex;
     gap: 20px;

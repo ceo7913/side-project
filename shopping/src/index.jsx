@@ -4,8 +4,9 @@ import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { useAuthContext } from './context/AuthContext';
 
 // pages
-import { CategoryPages, MyCart, NotFound, ProductDetail, Search, UpLoadProduct } from './pages';
+import { CategoryPages, MyCart, NotFound, ProductDetail, Qna, Search, UpLoadProduct, WritePage } from './pages';
 import App from './App';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -26,6 +27,8 @@ const routes = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { path: '/cart', element: <MyCart /> },
+      { path: '/board/write', element: <WritePage /> },
+      { path: '/board/qna', element: <Qna /> },
       { path: '/products/detail/:id', element: <ProductDetail /> },
       // <Link to={`/products/${el}`}>{el}</Link> / 선택한 :category 경로 이동 
       { path: '/products/:category', element: <CategoryPages /> },
