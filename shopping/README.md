@@ -19,6 +19,8 @@
 - uuid (식별자를 만들어주는 라이브러리(숫자와 영문으로 조합된 식별자 코드를 부여해서 고유값으로 사용하는 라이브러리))
 - react-query
 - swiper
+- prop-types
+- react-quill (게시판 기능 라이브러리)
 
 - webgradients (https://webgradients.com/)
 ```
@@ -29,4 +31,6 @@ $ yarn add react-icons
 $ yarn add uuid 
 $ yarn add @tanstack/react-query
 $ yarn add swiper
+$ yarn add prop-types
+$ yarn add react-quill
 ```
