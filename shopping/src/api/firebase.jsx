@@ -188,3 +188,16 @@ export async function searchProducts(query) {
       console.error(error);
    }
 }
+
+// 데이터베이스에 게시글 업로드
+export async function addBoard(user, date, title, text) {
+   const id = uuid();
+   const postData = {
+      id,
+      user,
+      date,
+      title,
+      text,
+   }
+   return set(ref(database, `/board/${id}`), postData)
+}
