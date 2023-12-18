@@ -1,3 +1,4 @@
+import { BoardDetailPage } from "./BoardDetailPage";
 import { CategoryPages } from "./CategoryPages";
 import { MyCart } from "./MyCart";
 import { NotFound } from "./NotFound";
@@ -8,4 +9,4 @@ import { UpLoadProduct } from './UpLoadProduct';
 import { WritePage } from './WritePage';
 
 
-export { ProductDetail, NotFound, MyCart, UpLoadProduct, CategoryPages, Search, Qna, WritePage }
+export { ProductDetail, NotFound, MyCart, UpLoadProduct, CategoryPages, Search, Qna, WritePage, BoardDetailPage }

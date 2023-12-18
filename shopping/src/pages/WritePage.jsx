@@ -1,20 +1,24 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import { addBoard } from '../api/firebase';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const WritePage = () => {
    const state = useLocation().state;
-   const { email } = state;
+   const email = state;
    const [boardTitle, setBoardTitle] = useState('');
    const [boardText, setBoardText] = useState('');
+   const navigate = useNavigate();
 
    const today = new Date();
    const date = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`
 
    const onSubmit = async (e) => {
+      e.preventDefault(); // 기본 이벤트 제거
       try {
          await addBoard(email, date, boardTitle, boardText);
+         // 작성 후 submit 하면 상단 페이지로 이동
+         navigate('/board/qna');
       } catch (error) {
          console.error(error)
       }
@@ -43,7 +47,7 @@ export const WritePage = () => {
                   onChange={(e) => setBoardText(e.target.value)}
                />
             </div>
-            <button className='submit-btn'>작성하기</button>
+            <button type='submit' className='submit-btn'>작성하기</button>
          </form>
       </BoardContainer>
    )
