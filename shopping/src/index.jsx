@@ -12,7 +12,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 // 관리자 인증(조건에 하나라도 만족하지 못하면 페이지를 이동할 수 없게 홈으로 이동)
 const ProtectRouter = ({ checkAdmin, children }) => {
-  const { user } = useAuthContext();
+  const { user, isLoding } = useAuthContext();
+  if (isLoding) {
+    // isLoding 이 true 라면return 해버려서 아래 있는 조건이 실행되지 않는다.
+    return
+  }
   if (!user || (checkAdmin && !user.isAdmin)) {
     return <Navigate to='/' replace></Navigate>
   }
