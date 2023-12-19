@@ -11,33 +11,35 @@ export const ProductReview = ({ productId }) => {
          const user = 'user'
          await addReview(productId, user, newReview);
          setNewReview('');
+
+         // 댓글 실시간 반영(리렌더링)
+         getReview(productId)
+            .then(setReview);
       } catch (error) {
          console.error(error)
       }
    }
-   // useEffect(() => {
-   //    const viewReview = async () => {
-   //       try {
-   //          const reviews = await getReview(productId)
-   //          setReview(reviews)
-   //       } catch (error) {
-   //          console.error(error)
-   //       }
-   //    }
-   //    viewReview()
-   // }, [review])
 
+   useEffect(() => {
+      getReview(productId)
+         .then((review) => {
+            setReview(review)
+         })
+         .catch((error) => {
+            console.error(error)
+         })
+   }, [productId])
 
-   const { data: reviews } = useQuery({
-      queryKey: [`review/${productId}`],
-      queryFn: () => getReview(productId),
-   })
+   // const { data: reviews } = useQuery({
+   //    queryKey: [`review/${productId}`],
+   //    queryFn: () => getReview(productId),
+   // })
 
    return (
       <div>
          <h3>후기</h3>
          <ul>
-            {reviews && reviews.map((el, idx) => (
+            {review && review.map((el, idx) => (
                <li>
                   <p>{el.text}</p>
                </li>

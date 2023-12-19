@@ -253,12 +253,25 @@ export async function addReview(productId, user, text) {
 }
 
 // 리뷰 글 출력
-export async function getReview(productId, text) {
-   return get(ref(database, `review/${productId}`))
-      .then((snapshot) => {
-         if (snapshot.exists()) {
-            return Object.values(snapshot.val());
-         }
-         return []
-      })
+export async function getReview(productId) {
+   const reviewRef = ref(database, `review/${productId}`);
+   try {
+      const snapshot = await get(reviewRef);
+      if (snapshot.exists()) {
+         return Object.values(snapshot.val());
+      } else {
+         return [];
+      }
+   } catch (error) {
+      console.error(error);
+   };
 }
+// export async function getReview(productId, text) {
+//    return get(ref(database, `review/${productId}`))
+//       .then((snapshot) => {
+//          if (snapshot.exists()) {
+//             return Object.values(snapshot.val());
+//          }
+//          return []
+//       })
+// }
