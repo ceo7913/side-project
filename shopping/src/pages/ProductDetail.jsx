@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components';
 import useCart from './../context/UseCart';
+import { ProductReview } from '../component/ProductReview';
 
 // DetialPageEvent 에서 클릭한 정보값을 받아옴
 export const ProductDetail = () => {
@@ -71,6 +72,7 @@ export const ProductDetail = () => {
             </div>
             {success && <p>{success}</p>}
          </DetailPage>
+         <ProductReview productId={id} />
       </div>
    )
 }

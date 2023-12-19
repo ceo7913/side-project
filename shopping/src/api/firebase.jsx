@@ -234,3 +234,31 @@ export async function getComments(boardId) {
          return []
       })
 }
+
+// 리뷰 글 저장
+export async function addReview(productId, user, text) {
+   const reviewId = uuid();
+   const reviewRef = ref(database, `review/${productId}/${reviewId}`);
+
+   try {
+      await set(reviewRef, {
+         id: reviewId,
+         user: user,
+         text: text,
+      })
+      return reviewId
+   } catch (error) {
+      console.error(error)
+   }
+}
+
+// 리뷰 글 출력
+export async function getReview(productId, text) {
+   return get(ref(database, `review/${productId}`))
+      .then((snapshot) => {
+         if (snapshot.exists()) {
+            return Object.values(snapshot.val());
+         }
+         return []
+      })
+}
