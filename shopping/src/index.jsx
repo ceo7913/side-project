@@ -30,7 +30,7 @@ const routes = createBrowserRouter([
       { path: '/board/write', element: <WritePage /> },
       { path: '/board/qna', element: <Qna /> },
 
-      { path: '/board/qna:id', element: <BoardDetailPage /> },
+      { path: '/board/qna/:id', element: <BoardDetailPage /> },
       { path: '/products/detail/:id', element: <ProductDetail /> },
       // <Link to={`/products/${el}`}>{el}</Link> / 선택한 :category 경로 이동 
       { path: '/products/:category', element: <CategoryPages /> },
