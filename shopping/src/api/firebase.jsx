@@ -212,3 +212,25 @@ export async function getBoard() {
          return []
       })
 }
+
+// 게시글에 댓글 저장
+export async function addComments(boardId, user, text) {
+   const id = uuid();
+   console.log(boardId)
+   return set(ref(database, `/board/${boardId}/comments/${id}`), {
+      id,
+      user,
+      text,
+   })
+}
+
+// 댓글 출력
+export async function getComments(boardId) {
+   return get(ref(database, `/board/${boardId}/comments`)) // get 으로 ref(레파지토리) 에서 가져오고 set 으로 레파지토리로 보냄
+      .then((snapshot) => {
+         if (snapshot.exists()) {
+            return Object.values(snapshot.val());
+         }
+         return []
+      })
+}
