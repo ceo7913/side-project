@@ -54,8 +54,9 @@ export const Join = () => {
             if (result.error === 'auth/email-already-in-use') {
                setEmailError('해당 이메일은 현재 사용중입니다.')
             }
+         } else {
+            navigate('/login')
          }
-         navigate('/login')
 
       } catch (error) {
          console.error(error)
