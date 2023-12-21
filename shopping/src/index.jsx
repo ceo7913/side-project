@@ -4,7 +4,7 @@ import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { useAuthContext } from './context/AuthContext';
 
 // pages
-import { BoardDetailPage, CategoryPages, MyCart, NotFound, ProductDetail, Qna, Search, UpLoadProduct, WritePage } from './pages';
+import { BoardDetailPage, CategoryPages, Join, Login, MyCart, NotFound, ProductDetail, Qna, Search, UpLoadProduct, WritePage } from './pages';
 import App from './App';
 
 
@@ -31,6 +31,8 @@ const routes = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { path: '/cart', element: <MyCart /> },
+      { path: '/login', element: <Login /> },
+      { path: '/join', element: <Join /> },
       { path: '/board/write', element: <WritePage /> },
       { path: '/board/qna', element: <Qna /> },
 
