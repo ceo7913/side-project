@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom';
+import { formatCurrency } from '../api/firebase';
 
 export const DetailPageEvent = ({ product }) => {
    // const colorItem = product.colors
@@ -41,7 +42,7 @@ export const DetailPageEvent = ({ product }) => {
             </h3>
             <div className='itemFlex'>
                <p className='itemPrice'>
-                  {product.price}
+                  {formatCurrency(product.price)}
                </p>
                <p className='itemOpt'>
                   {product.option}

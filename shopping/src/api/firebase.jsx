@@ -94,8 +94,39 @@ async function adminUser(user) {
    }
 }
 
+
+/*
+데이터 베이스에 데이터를 저장할때에는 원시형태의 값으로 유지 시켜서 저장하고, 출력할때 변환해준느 과정을 넣어주는 것이 일반적이고 가장 안전한 방법으로 본다.
+
+우선적으로 변환해서 저장하게 되면 지역이 바뀌는 경우 재변환이 필요한 경우가 생긴다.
+때문에 원시형태로 저장 후 필요할때마다 필요한 방법으로 변환하는 것이 재사용성과 유연성에 더 알맞다.
+*/
+// 상품 가격 변환 함수
+export function formatCurrency(item) {
+   // console.log(typeof(item)) => string
+   const number = parseInt(item) // type 을 number 의 형태로 바꿔줘야함
+   return number.toLocaleString('ko-KR'); // formatCurrency(product.price) => 이런식으로 사용
+   // toLocaleString = 지역에 맞는 단위를 자동으로 구분해서 콤마를 찍어줌
+   /*
+      ko-KR : 한국
+      en-US : 미국
+      en-CA : 캐나다
+      ja-JP : 일본
+      zh-CN : 중국
+
+      단위를 구분하는 방식이 틀림
+      1,234,456
+      1 234 456
+      1.234.456
+   */
+
+}
+
+
 // 상품을 database 에 업로드
 export async function addProducts(product, image) {
+   // uuid = 식별자를 만들어주는 라이브러리
+   // 숫자와 영문으로 조합된 식별자 코드를 부여해서 고유값으로 사용한다.
    const id = uuid()
    // database 에 products 경로에 id 값으로 data 를 넣음
    return set(ref(database, `products/${id}`), {
@@ -266,12 +297,3 @@ export async function getReview(productId) {
       console.error(error);
    };
 }
-// export async function getReview(productId, text) {
-//    return get(ref(database, `review/${productId}`))
-//       .then((snapshot) => {
-//          if (snapshot.exists()) {
-//             return Object.values(snapshot.val());
-//          }
-//          return []
-//       })
-// }
