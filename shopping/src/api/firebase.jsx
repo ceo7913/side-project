@@ -1,6 +1,6 @@
 // 필요한 SDK에서 필요한 기능을 가져옴
 import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { get, getDatabase, ref, remove, set } from 'firebase/database';
 
 import { v4 as uuid } from 'uuid';
@@ -314,9 +314,20 @@ export async function joinEmail(email, password, name) {
       })
       console.log(user);
 
-      return user;
+      await signOut(auth);
+      return { success: true };
    } catch (error) {
       console.log({ error: error.code }) // => auth/email-already-in-use 
       return { error: error.code } // 에러가 나는 경우 에러 코드를 반환
+   }
+}
+
+// 로그인
+export async function loginEmail(email, password) {
+   try {
+      const userData = await signInWithEmailAndPassword(auth, email, password)
+      return userData.user
+   } catch (error) {
+      console.error(error);
    }
 }
