@@ -8,6 +8,7 @@ import { Outlet, Route, Routes } from "react-router-dom";
 import GlobalStyle from "./styled/GlobalStyled";
 import { AllProduct } from "./pages/AllProduct";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { TopBtn } from "./component/TopBtn";
 
 const queryClient = new QueryClient()
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Routes>
             <Route path="/" element={<AllProduct />} />
           </Routes>
+          <TopBtn />
           <Outlet />
         </AuthContextProvider>
       </QueryClientProvider>
