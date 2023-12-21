@@ -1,6 +1,6 @@
 // 필요한 SDK에서 필요한 기능을 가져옴
 import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { get, getDatabase, ref, remove, set } from 'firebase/database';
 
 import { v4 as uuid } from 'uuid';
@@ -296,4 +296,27 @@ export async function getReview(productId) {
    } catch (error) {
       console.error(error);
    };
+}
+
+// 이메일 회원가입 저장
+export async function joinEmail(email, password, name) {
+   const auth = getAuth(); // 저장할 사용자 인증폼을 불러옴
+   try {
+      const userData = await createUserWithEmailAndPassword(auth, email, password)
+      // createUserWithEmailAndPassword 사용자 정보 이메일 패스워드만 저장할 수 있으며
+      // 추가로 정보를 저장할 때에는 우회하는 방법을 이용해야 한다.
+      const user = userData.user;
+      // console.log(user);
+
+      // updateProfile = 사용자의 정보를 업데이트
+      await updateProfile(user, {
+         displayName: name
+      })
+      console.log(user);
+
+      return user;
+   } catch (error) {
+      console.log({ error: error.code }) // => auth/email-already-in-use 
+      return { error: error.code } // 에러가 나는 경우 에러 코드를 반환
+   }
 }
